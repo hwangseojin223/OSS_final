@@ -141,6 +141,11 @@ while running:
 
 
     # 4. 충돌 처리
+    
+    #모든 공을 없앤 경우 게임 종료(성공)
+    if len(balls) == 0:
+        game_result = "Mission Complete"
+        running = False
 
     # 캐릭터 rect 정보 업데이트
     character_rect = character.get_rect()
@@ -230,6 +235,24 @@ while running:
     screen.blit(stage, (0, screen_height - stage_height))
     screen.blit(character, (character_x_pos, character_y_pos))
     
+    #경과 시간 계산
+    elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
+    timer = game_font.render("Time : {}".format(int(total_time - elapsed_time)), True, (255,255,255))
+    screen.blit(timer, (10,10))
+    
+    #시간 초과
+    if total_time - elapsed_time <= 0:
+        game_result = "Time Over"
+        funning = False
+    
     pygame.display.update()
+
+#게임오버메시지
+msg = game_font.render(game_result, True, (255,255,0))
+msg_rect = msg.get_rect(center = (int(screen_width / 2), int(screen_height / 2)))
+screen.blit(msg, msg_rect)
+pygame.display.update()
+
+pygame.time.delay(2000)
 
 pygame.quit()
