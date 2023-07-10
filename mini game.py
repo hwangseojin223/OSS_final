@@ -208,9 +208,7 @@ while running:
                         "init_spd_y": ball_speed_y[ball_img_idx + 1]
                     })
                 break
-            else:
-                continue
-            break
+            
                 
             
 
