@@ -208,6 +208,9 @@ while running:
                         "init_spd_y": ball_speed_y[ball_img_idx + 1]
                     })
                 break
+            else:
+                continue
+            break
 
     # 충돌된 공 or 무기 없애기
     if ball_to_remove > -1:
